@@ -1,6 +1,31 @@
-function storeSubTotal(item) {}
+const containerF = document.getElementById('containerF');
+const containerAd = document.getElementById('containerAd');
+const addressForm = document.getElementById('addressForm');
+const addressDisplay = document.getElementById('addressDisplay');
+const addressDetails = document.getElementById('addressDetails');
+const editButton = document.getElementById('editButton');
+const state = document.getElementById('state');
+const zip = document.getElementById('zip');
+const street = document.getElementById('street');
+const city = document.getElementById('city');
+const name = document.getElementById('name');
+
 
 function renderCart() {
+  const completeAdd=JSON.parse(localStorage.getItem("address"))
+  if(completeAdd){
+    const addressComp= `
+  <strong>${completeAdd.name}</strong><br>
+  ${completeAdd.street}<br>
+  ${completeAdd.city}, ${completeAdd.state} - ${completeAdd.zip}<br>
+  India
+`
+    addressDetails.innerHTML = addressComp
+    addressForm.classList.add('d-none');
+    addressDisplay.classList.remove('d-none');
+    containerF.classList.add('d-none');
+    containerAd.classList.remove('d-none');
+  }
   const row = document.getElementById("cartTable");
   row.innerHTML = ""; // Clear existing content
   const cart = JSON.parse(localStorage.getItem("cart")) || []; // Get cart items or initialize as empty array
@@ -96,18 +121,13 @@ function calculateGrandTotal() {
     total += (item?.price || 0) * (item?.quantity || 1);
   });
   console.log("inside", total, cart);
-  grandTotal.innerHTML = total;
+  grandTotal.innerHTML = "Rs. " +total;
 }
 
 renderCart();
 
 
-const containerF = document.getElementById('containerF');
-const containerAd = document.getElementById('containerAd');
-const addressForm = document.getElementById('addressForm');
-const addressDisplay = document.getElementById('addressDisplay');
-const addressDetails = document.getElementById('addressDetails');
-const editButton = document.getElementById('editButton');
+
 
 addressForm.addEventListener('submit', (event) => {
   event.preventDefault(); // Prevent page reload
@@ -124,27 +144,38 @@ addressForm.addEventListener('submit', (event) => {
   };
 
   // Display the address
-  addressDetails.innerHTML = `
-    <strong>${address.name}</strong><br>
-    ${address.street}<br>
-    ${address.city}, ${address.state} - ${address.zip}<br>
-    ${address.country}
-  `;
-
+  const addressComp= `
+  <strong>${address.name}</strong><br>
+  ${address.street}<br>
+  ${address.city}, ${address.state} - ${address.zip}<br>
+  India
+`
+  addressDetails.innerHTML = addressComp
+localStorage.setItem("address", JSON.stringify(address));
   // Hide the form and show the address display
-  addressForm.classList.add('hidden');
-  addressDisplay.classList.remove('hidden');
-  containerF.classList.add('hidden');
-  containerAd.classList.remove('hidden');
+  addressForm.classList.add('d-none');
+  addressDisplay.classList.remove('d-none');
+  containerF.classList.add('d-none');
+  containerAd.classList.remove('d-none');
 });
+
 
 // Handle edit button click
 editButton.addEventListener('click', () => {
+  const completeAdd=JSON.parse(localStorage.getItem("address"))
+  if(completeAdd){
+    city.value=completeAdd.city
+    state.value=completeAdd.state
+    zip.value=completeAdd.zip
+    street.value=completeAdd.street
+    name.value=completeAdd.name
+  }
+
   // Show the form and hide the address display
-  addressForm.classList.remove('hidden');
-  addressDisplay.classList.add('hidden');
-  containerAd.classList.add('hidden');
-  containerF.classList.remove('hidden');
+  addressForm.classList.remove('d-none');
+  addressDisplay.classList.add('d-none');
+  containerAd.classList.add('d-none');
+  containerF.classList.remove('d-none');
 });
 
 

@@ -1499,7 +1499,7 @@ button.submit-btn:hover {
                     onclick="emptyCart()"
                     class="cart-page__update-btn cart-page__btn mediox-btn mediox-btn--normal"
                   >
-                    <span>Remove All</span>
+                    <span>Empty Cart</span>
                   </a>
                 </div>
                 <!-- /.cart-page__coupone__box -->
@@ -1507,77 +1507,80 @@ button.submit-btn:hover {
               <!-- /.cart-page__coupone -->
             </div>
             <!-- /.col-xl-12 -->
-            <div class="col-xl-12 bg-success">
-              <div class="cart-page__cart-checkout bg-warning">
+            <div class="col-xl-12" style="display: flex;flex-direction: row;justify-content: end;">
+              <div class="cart-page__cart-checkout1" style="width: 400px;">
+<div>
+  <ul class="cart-page__cart-total list-unstyled">
+    <div  style="position: relative;" id="containerAd">
+      <div id="addressDisplay" class="address-display" style="margin:0px">
+        <h2>Shipping to</h2>
+        <p id="addressDetails"></p>
+      </div>
+      <button id="editButton" class="edit-btn" style="position: absolute; top: 10px; right: 10px;">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          fill="currentColor"
+        >
+          <path
+            d="M14.06 2.94a1.5 1.5 0 0 1 2.12 0l4.94 4.94a1.5 1.5 0 0 1 0 2.12l-9.19 9.19a1 1 0 0 1-.52.27l-6.3 1.41a.5.5 0 0 1-.6-.6l1.41-6.3a1 1 0 0 1 .27-.52l9.19-9.19Zm-8.49 13.7-.95 4.25 4.25-.95 7.72-7.72-3.3-3.3-7.72 7.72Zm9.83-9.83 3.3 3.3 1.41-1.41-3.3-3.3-1.41 1.41Z"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="containerF" id="containerF">
+      <h1>Enter Your Address</h1>
+      <form id="addressForm" class="address-form">
+          <div class="flexCon ">
+                <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" required />
+        </div>
+   <div class="form-group spaceClass">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="City" required />
+        </div>
 
-                <ul class="cart-page__cart-total list-unstyled">
-                  <div  style="position: relative; border: 1px solid red;" id="containerAd">
-                    <div id="addressDisplay" class="address-display" style="margin:0px">
-                      <h2>Delivering to</h2>
-                      <p id="addressDetails"></p>
-                    </div>
-                    <button id="editButton" class="edit-btn" style="position: absolute; top: 10px; right: 10px;">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M14.06 2.94a1.5 1.5 0 0 1 2.12 0l4.94 4.94a1.5 1.5 0 0 1 0 2.12l-9.19 9.19a1 1 0 0 1-.52.27l-6.3 1.41a.5.5 0 0 1-.6-.6l1.41-6.3a1 1 0 0 1 .27-.52l9.19-9.19Zm-8.49 13.7-.95 4.25 4.25-.95 7.72-7.72-3.3-3.3-7.72 7.72Zm9.83-9.83 3.3 3.3 1.41-1.41-3.3-3.3-1.41 1.41Z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="containerF" id="containerF">
-                    <h1>Enter Your Address</h1>
-                    <form id="addressForm" class="address-form">
-                        <div class="flexCon ">
-                              <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required />
-                      </div>
-                 <div class="form-group spaceClass">
-                        <label for="city">City</label>
-                        <input type="text" id="city" name="city" placeholder="City" required />
-                      </div>
+          </div>
+       <div class="form-group ">
+          <label for="street">Street Address</label>
+          <input type="text" id="street" name="street" placeholder="123 Main St" required />
+        </div>
+          <div class="flexCon">
 
-                        </div>
-                     <div class="form-group ">
-                        <label for="street">Street Address</label>
-                        <input type="text" id="street" name="street" placeholder="123 Main St" required />
-                      </div>
-                        <div class="flexCon">
+     <div class="form-group ">
+          <label for="zip">Zip Code</label>
+          <input type="text" id="zip" name="zip" placeholder="12345" required />
+        </div>
+        <div class="form-group spaceClass">
+          <label for="state">State</label>
+          <input type="text" id="state" name="state" placeholder="State" required />
+        </div>
+    </div>
+          <button type="submit" class="submit-btn" style="background-color: #EF6B06;">Confirm Address</button>
+      </form>
+    </div>
+    <li
+      class="cart-page__cart-total__amount cart-page__cart-total__amount--2 mt-3"
+    >
+      <span>Total</span
+      ><span
+        class="cart-page__cart-total__amount__text"
+        id="grandTotal"
+        style="font-size: 25px;"
+        >Rs. 0.00</span
+      >
+    </li>
+  </ul>
+  <div class="cart-page__button">
+    <a class="mediox-btn mediox-btn--normal">
+      <span>Proceed to Pay</span>
+    </a>
+  </div>
+</div>
 
-                   <div class="form-group ">
-                        <label for="zip">Zip Code</label>
-                        <input type="text" id="zip" name="zip" placeholder="12345" required />
-                      </div>
-                      <div class="form-group spaceClass">
-                        <label for="state">State</label>
-                        <input type="text" id="state" name="state" placeholder="State" required />
-                      </div>
-                  </div>
-                        <button type="submit" class="submit-btn">Confirm Address</button>
-                    </form>
-                  </div>
-                  <li
-                    class="cart-page__cart-total__amount cart-page__cart-total__amount--2"
-                  >
-                    <span>Total</span
-                    ><span
-                      class="cart-page__cart-total__amount__text"
-                      id="grandTotal"
-                      >Rs. 0.00</span
-                    >
-                  </li>
-                </ul>
-                <div class="cart-page__button">
-                  <a class="mediox-btn mediox-btn--normal">
-                    <span>checkout</span>
-                  </a>
-                </div>
                 <!-- /.cart-page__button -->
               </div>
             </div>
