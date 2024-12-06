@@ -9,6 +9,17 @@ const zip = document.getElementById('zip');
 const street = document.getElementById('street');
 const city = document.getElementById('city');
 const name = document.getElementById('name');
+const emptyCartBtn = document.getElementById('emptyCartBtn');
+
+function decideViewOfEmptyButton(cart){
+
+  if(cart?.length>0){
+    emptyCartBtn.classList.remove('d-none');
+  }
+  else{
+    emptyCartBtn.classList.add('d-none');
+  }
+}
 
 
 function renderCart() {
@@ -29,7 +40,7 @@ function renderCart() {
   const row = document.getElementById("cartTable");
   row.innerHTML = ""; // Clear existing content
   const cart = JSON.parse(localStorage.getItem("cart")) || []; // Get cart items or initialize as empty array
-
+  decideViewOfEmptyButton(cart)
   // Handle empty cart
   if (!cart.length) {
     row.innerHTML = `<h1 style="text-align:center;margin:50px">Your Cart is Empty!</h1>`;
@@ -85,6 +96,8 @@ function renderCart() {
     row.innerHTML += productCard;
   });
   calculateGrandTotal();
+
+
 }
 
 function updateQuantity(index, change) {
@@ -99,6 +112,7 @@ function updateQuantity(index, change) {
 
 function removeFromCart(index) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  decideViewOfEmptyButton(cart)
   cart.splice(index, 1);
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
@@ -109,6 +123,7 @@ function emptyCart() {
   localStorage.removeItem("cart");
   renderCart();
   calculateGrandTotal();
+  decideViewOfEmptyButton([])
 }
 
 function calculateGrandTotal() {
