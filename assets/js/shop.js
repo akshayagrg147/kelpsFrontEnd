@@ -106,6 +106,7 @@ function createCards(data) {
                       <img
                         src=${encodeURI(item?.product_image?.image_1)}
                         alt="Shelcal 500"
+                        style="height:200px;width:100%"
                       />
                     </div>
                     <!-- /.product-image -->
