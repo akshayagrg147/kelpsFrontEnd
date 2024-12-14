@@ -43,7 +43,7 @@ function renderCart() {
   decideViewOfEmptyButton(cart)
   // Handle empty cart
   if (!cart.length) {
-    row.innerHTML = `<h1 style="text-align:center;margin:50px">Your Cart is Empty!</h1>`;
+    row.innerHTML = `<h1 style="text-align:center;margin:80px;color:grey">Your Cart is Empty!</h1>`;
     return; // Exit the function early
   }
 
@@ -157,6 +157,12 @@ addressForm.addEventListener('submit', (event) => {
     zip: formData.get('zip'),
     country: formData.get('country'),
   };
+
+  const zipRegex = /^\d{6}$/;
+  if (!zipRegex.test(address.zip)) {
+    alert("Pincode must be exactly 6 digits.");
+    return;
+  }
 
   // Display the address
   const addressComp= `
