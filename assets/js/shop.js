@@ -2,7 +2,7 @@ const PRODUCTS = "PRODUCTS";
 const productsRef = [];
 
 // The API endpoint (replace with your own API URL)
-const API_URL = "http://ec2-13-201-20-227.ap-south-1.compute.amazonaws.com:8010/product_list";
+const API_URL = "https://www.kelpshealthcare.com/product_list";
 
 function onSearch() {
   const searchBox = document.getElementById("searchItem");
@@ -234,5 +234,5 @@ const renderCategories = () => {
 
 fetchData();
 getCategories(
-  "http://ec2-13-201-20-227.ap-south-1.compute.amazonaws.com:8010/admin_action/category?user_id=1"
+  "https://www.kelpshealthcare.com/admin_action/category?user_id=1"
 );

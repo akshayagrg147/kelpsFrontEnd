@@ -1,5 +1,5 @@
 const BASEURL =
-  "http://ec2-13-201-20-227.ap-south-1.compute.amazonaws.com:8010";
+  "https://www.kelpshealthcare.com";
 const SWWrong = "Something went wrong!";
 async function login(event) {
   event.preventDefault();
