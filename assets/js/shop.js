@@ -53,6 +53,7 @@ function onSelect(val) {
 }
 
 const addProductToCart = (addItem) => {
+
   console.log("addItem", addItem);
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const isProductExist = cart?.find((item) => item?.product_id === addItem?.product_id);
@@ -72,6 +73,11 @@ function renderShowResults(data, search) {
   totalProducts.innerHTML = totalPara;
 }
 
+function navigateToProductDetails(productId) {
+  // Navigate to 'product-details.html' with the product ID as a query parameter
+  window.location.href = `product-details.html?id=${productId}`;
+}
+
 // Function to create and insert cards into the HTML
 function createCards(data) {
   const searchBox = document.getElementById("searchItem");
@@ -89,6 +95,8 @@ function createCards(data) {
     cardContainer.innerHTML = empty;
   }
 
+
+
   // Loop through the data and create cards
   console.log("inside",data)
   data.forEach((item) => {
@@ -101,12 +109,14 @@ function createCards(data) {
                     class="product__item wow fadeInUp"
                     data-wow-duration="1500ms"
                     data-wow-delay="000ms"
+
                   >
-                    <div class="product__item__image">
+                    <div class="product__item__image" onclick="navigateToProductDetails(${item.product_id})">
                       <img
                         src=${encodeURI(item?.product_image?.image_1)}
                         alt="Shelcal 500"
                         style="height:200px;width:100%"
+                        href="product-details.html"
                       />
                     </div>
                     <!-- /.product-image -->
