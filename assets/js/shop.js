@@ -1,9 +1,12 @@
+const KELPS_BASE_URL=JSON.parse(localStorage.getItem("KELPS_BASE_URL"))
+
 const PRODUCTS = "PRODUCTS";
 const productsRef = [];
 
 // The API endpoint (replace with your own API URL)
-const API_URL = "https://www.kelpshealthcare.com/product_list";
-
+const API_URL = `${KELPS_BASE_URL}/product_list`;
+// const API_URL =
+// "http://3.110.117.10/product_list";
 function onSearch() {
   const searchBox = document.getElementById("searchItem");
   const searchValue = searchBox.value;

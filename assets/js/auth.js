@@ -1,5 +1,6 @@
-const BASEURL =
-  "https://www.kelpshealthcare.com";
+// const BASEURL =
+//   "https://kelpshealthcare.com";
+
 const SWWrong = "Something went wrong!";
 async function login(event) {
   event.preventDefault();
@@ -16,7 +17,7 @@ async function login(event) {
   try {
     const payload = { email, password };
 
-    const response = await fetch(`${BASEURL}/user_login`, {
+    const response = await fetch(`${JSON.parse(localStorage.getItem("KELPS_BASE_URL"))}/user_login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
