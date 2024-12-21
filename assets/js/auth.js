@@ -2,6 +2,7 @@
 //   "https://kelpshealthcare.com";
 
 const SWWrong = "Something went wrong!";
+const KELPS_BASE_URL=JSON.parse(localStorage.getItem("KELPS_BASE_URL"))
 async function login(event) {
   event.preventDefault();
   const email = document.getElementById("login_email_or_phone").value;
@@ -17,7 +18,7 @@ async function login(event) {
   try {
     const payload = { email, password };
 
-    const response = await fetch(`${JSON.parse(localStorage.getItem("KELPS_BASE_URL"))}/user_login`, {
+    const response = await fetch(`${KELPS_BASE_URL}/user_login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +64,7 @@ async function register(event) {
   try {
     const payload = { email, password };
 
-    const response = await fetch(`${BASEURL}/user_register`, {
+    const response = await fetch(`${KELPS_BASE_URL}/user_register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -116,6 +117,10 @@ function redirectToHome() {
 }
 
 function logout() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("data");
+  const token=  localStorage.getItem("token");
+  if(token){
+    localStorage.removeItem("token");
+    localStorage.removeItem("data");
+  }
+  window.location.href = "login.html";
 }
