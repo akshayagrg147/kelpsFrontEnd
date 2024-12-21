@@ -14,6 +14,13 @@ async function login(event) {
 
     return;
   }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    document.getElementById("response").innerText =
+      "Please enter a valid email address.";
+    return;
+  }
 
   try {
     const payload = { email, password };
@@ -60,6 +67,13 @@ async function register(event) {
 
     return;
   }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if (!emailRegex.test(email)) {
+  document.getElementById("responseReg").innerText =
+    "Please enter a valid email address.";
+  return;
+}
 
   try {
     const payload = { email, password };
@@ -87,6 +101,7 @@ async function register(event) {
         setTimeout(() => {
           window.location.href = "auth.html";
         }, 1000);
+
       } else {
         throw new Error(responseData?.message);
       }
@@ -117,10 +132,11 @@ function redirectToHome() {
 }
 
 function logout() {
-  const token=  localStorage.getItem("token");
+  const token= localStorage.getItem("token");
   if(token){
     localStorage.removeItem("token");
     localStorage.removeItem("data");
   }
-  window.location.href = "login.html";
+
+  window.location.href = "auth.html";
 }

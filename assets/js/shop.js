@@ -248,5 +248,7 @@ const renderCategories = () => {
 
 fetchData();
 getCategories(
-  "https://www.kelpshealthcare.com/admin_action/category?user_id=1"
+  `${KELPS_BASE_URL}/admin_action/category?user_id=17`
 );
+
+
